@@ -63,7 +63,7 @@ pub fn listing_one_five() {
 }
 
 /// Borrowing and Lifetimes - Mutable References &mut T - Access through a mutable reference must leave a value behind
-pub fn listing_one_six() {
+pub fn listing_one_seven() {
     fn replace_with_84(s: &mut Box<i32>) {
         let was = std::mem::take(s);
 
@@ -79,4 +79,40 @@ pub fn listing_one_six() {
     let mut s = Box::new(42);
 
     replace_with_84(&mut s);
+}
+
+/// Lifetimes - Do not need to be contiguous.
+pub fn listing_one_eight() {
+    use rand::{thread_rng, Rng};
+
+    fn rand() -> f64 {
+        thread_rng().gen_range(-40.0..1.3e5)
+    }
+
+    let mut x = Box::new(42);
+
+    let r = &x;
+
+    if rand() > 0.5 {
+        *x = 84;
+    } else {
+        println!("{}", r);
+    }
+}
+
+/// Lifetimes - Can have holes.
+pub fn listing_one_nine() {
+    println!("Listing 1-9");
+    let mut x = Box::new(42);
+
+    let mut z = &x; // 'a
+
+    for i in 0..100 {
+        println!("value of z in for: {}", z); // 'a
+        x = Box::new(i);
+        z = &x; // 'a
+    }
+
+    println!("last value of z: {}", z); // 'a
+    println!();
 }

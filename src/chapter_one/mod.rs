@@ -29,3 +29,16 @@ pub fn listing_one_three() {
     //the y1's value was moved into z, because the Box dont have the Copy trait implemented, and z was dropped already
     // let y2 = y1;
 }
+
+/// Borrowing and Lifetimes - Shared References
+pub fn listing_one_for() {
+    fn cache(input: &i32, sum: &mut i32) {
+        *sum = *input + *input;
+        assert_eq!(*sum, 2 * *input);
+    }
+
+    let input = 32;
+    let mut sum: i32 = 0;
+
+    cache(&input, &mut sum);
+}

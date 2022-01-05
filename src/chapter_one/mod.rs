@@ -61,3 +61,22 @@ pub fn listing_one_five() {
 
     assert_eq!(output, 3);
 }
+
+/// Borrowing and Lifetimes - Mutable References &mut T - Access through a mutable reference must leave a value behind
+pub fn listing_one_six() {
+    fn replace_with_84(s: &mut Box<i32>) {
+        let was = std::mem::take(s);
+
+        *s = was;
+
+        let mut r = Box::new(84);
+
+        std::mem::swap(s, &mut r);
+
+        assert_ne!(*r, 84);
+    }
+
+    let mut s = Box::new(42);
+
+    replace_with_84(&mut s);
+}

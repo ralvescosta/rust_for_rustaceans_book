@@ -42,3 +42,22 @@ pub fn listing_one_for() {
 
     cache(&input, &mut sum);
 }
+
+/// Borrowing and Lifetimes - Mutable References &mut T - Rust assume that mutable reference are exclusive
+pub fn listing_one_five() {
+    fn no_alias(input: &i32, output: &mut i32) {
+        if *input == 1 {
+            *output = 2;
+        }
+        if *input != 1 {
+            *output = 3;
+        }
+    }
+
+    let input = 32;
+    let mut output: i32 = 0;
+
+    no_alias(&input, &mut output);
+
+    assert_eq!(output, 3);
+}

@@ -30,7 +30,7 @@ pub fn listing_one_three() {
     // let y2 = y1;
 }
 
-/// Borrowing and Lifetimes - Shared References
+/// Borrowing and Lifetimes - Shared References &T - Rust assume that shared references are immutable
 pub fn listing_one_for() {
     fn cache(input: &i32, sum: &mut i32) {
         *sum = *input + *input;

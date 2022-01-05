@@ -139,3 +139,18 @@ pub fn listing_one_tem() {
         .next()
     }
 }
+
+/// Lifetimes - Variance
+pub fn listing_one_eleven() {
+    println!("Listing 1-11");
+    struct MutStr<'a, 'b> {
+        s: &'a mut &'b str,
+    }
+
+    let mut s = "hello";
+
+    *MutStr { s: &mut s }.s = "world";
+
+    println!("{}", s);
+    println!()
+}
